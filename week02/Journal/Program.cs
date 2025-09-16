@@ -31,19 +31,20 @@ class Program
             Console.Write("What would you like to do from the list above?: ");
             input = int.Parse(Console.ReadLine());
 
+
             if (input == 1)
             {
-                Entry entry1 = new Entry();
+                Entry entry = new Entry();
                 DateTime date = DateTime.Today;
 
-                entry1._promptText = prompt.GetRandomPrompt();
-                entry1._date = date.ToShortDateString();
+                entry._promptText = prompt.GetRandomPrompt();
+                entry._date = date.ToShortDateString();
 
-                Console.WriteLine($"{entry1._promptText}");
-
+                Console.WriteLine($"{entry._promptText}");
                 string text = Console.ReadLine();
-                entry1._entryText = text;
-                journal.AddEntry(entry1);
+                entry._entryText = text;
+
+                journal.AddEntry(entry);
             }
 
             else if (input == 2)
@@ -58,12 +59,18 @@ class Program
             {
                 Console.Write("Please enter a file name: ");
                 string filename = Console.ReadLine() + ".txt";
-
+                journal._entries.Clear();
                 string[] lines = File.ReadAllLines(filename);
 
                 foreach (string line in lines)
                 {
-                    Console.WriteLine(line);
+                    Entry entry = new Entry();
+                    string[] entries = line.Split("|");
+                    entry._date = entries[0];
+                    entry._promptText = entries[1];
+                    entry._entryText = entries[2];
+                    journal.AddEntry(entry);
+
                 }
             }
 
@@ -75,12 +82,7 @@ class Program
                 {
                     foreach (Entry entry in journal._entries)
                     {
-                        outputFile.WriteLine($"Date: {entry._date} - Prompt: {entry._promptText}");
-                        outputFile.WriteLine($"Entry Text: {entry._entryText}|");
-                        outputFile.WriteLine("");
-                        // outputFile.Write($"{entry._date}|");
-                        // outputFile.Write($"{entry._entryText}|");
-                        // outputFile.WriteLine($"{entry._promptText}");
+                        outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
                     }
                 }
 
