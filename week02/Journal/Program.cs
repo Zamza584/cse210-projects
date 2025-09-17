@@ -49,29 +49,14 @@ class Program
 
             else if (input == 2)
             {
-                foreach (Entry entry in journal._entries)
-                {
-                    entry.Display();
-                }
+                journal.DisplayEntries();
             }
 
             else if (input == 3)
             {
                 Console.Write("Please enter a file name: ");
                 string filename = Console.ReadLine() + ".txt";
-                journal._entries.Clear();
-                string[] lines = File.ReadAllLines(filename);
-
-                foreach (string line in lines)
-                {
-                    Entry entry = new Entry();
-                    string[] entries = line.Split("|");
-                    entry._date = entries[0];
-                    entry._promptText = entries[1];
-                    entry._entryText = entries[2];
-                    journal.AddEntry(entry);
-
-                }
+                journal.SaveToFile(filename);
             }
 
             else if (input == 4)
