@@ -13,7 +13,7 @@ public class Word
     public void Hide()
     {
         string underscore = "_";
-        for (int i = 0; i < _text.Length - 1; i++) // used ai to get the length info 
+        for (int i = 0; i < _text.Length - 1; i++) // used know more about how to use length 
         {
             underscore += "_";
         }
