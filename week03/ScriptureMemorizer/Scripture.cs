@@ -15,20 +15,14 @@ public class Scripture
     }
     public void HideRandomWords(int numberToHide)
     {
-        int[] rndIndexes = new int[numberToHide];
 
         for (int i = 0; i < numberToHide; i++)
         {
             Random random = new Random();
             int rndIndex = random.Next(_words.Count);
-            rndIndexes.Append(rndIndex);
             _words[rndIndex].Hide();
         }
 
-        // foreach (int index in rndIndexes)
-        // {
-        //     if (index[rndIndexes])
-        // }
     }
 
     public string GetDisplayText()
@@ -46,6 +40,17 @@ public class Scripture
 
         string result = refText + " " + String.Join(" ", words);
         return result;
+    }
 
+    public bool IsCompletelyHidden()
+    {
+        foreach (Word word in _words)
+        {
+            if (word.IsHidden() == false)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

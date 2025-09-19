@@ -11,12 +11,18 @@ class Program
 
         while (prompt != "quit")
         {
+            if (scripture.IsCompletelyHidden() == true)
+            {
+                break;
+            }
+
             string s = scripture.GetDisplayText();
             Console.WriteLine(s);
             Console.WriteLine("Please enter to continue or type 'quit' to finish:");
             prompt = Console.ReadLine();
-            Console.Clear();
             scripture.HideRandomWords(3);
+            Console.Clear();
+
         }
     }
 }

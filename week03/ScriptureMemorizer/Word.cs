@@ -18,8 +18,8 @@ public class Word
             underscore += "_";
         }
 
+        _isHidden = true;
         _text = underscore;
-
     }
     public void Show()
     {
