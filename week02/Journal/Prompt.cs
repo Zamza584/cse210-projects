@@ -6,7 +6,7 @@ public class Prompt
     {
 
         Random random = new Random();
-        int randomNumber = random.Next(1, 5);
+        int randomNumber = random.Next(1, 5); // I believe I used ai help to understand this next function
 
         return _prompts[randomNumber];
     }
