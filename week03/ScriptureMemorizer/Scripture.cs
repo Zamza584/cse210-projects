@@ -13,9 +13,29 @@ public class Scripture
             _words.Add(wrd);
         }
     }
+    public void HideRandomWords(int numberToHide)
+    {
+        int[] rndIndexes = new int[numberToHide];
+
+        for (int i = 0; i < numberToHide; i++)
+        {
+            Random random = new Random();
+            int rndIndex = random.Next(_words.Count);
+            rndIndexes.Append(rndIndex);
+            _words[rndIndex].Hide();
+        }
+
+        // foreach (int index in rndIndexes)
+        // {
+        //     if (index[rndIndexes])
+        // }
+    }
 
     public string GetDisplayText()
     {
+
+        string refText = _reference.GetReferenceText();
+
         List<string> words = new List<string>();
 
         foreach (Word word in _words)
@@ -24,8 +44,8 @@ public class Scripture
             words.Add(w);
         }
 
-        string result = String.Join(" ", words);
+        string result = refText + " " + String.Join(" ", words);
         return result;
-    }
 
+    }
 }
