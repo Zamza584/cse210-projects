@@ -8,7 +8,7 @@ namespace mindfulness
         public ListingActivity()
         {
             _name = "Listing Activity";
-            _description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+            _description = "In this activity you will be given a question and you will be given some time to respond to this question.";
 
             _prompts.Add("Who are people that you appreciate?");
             _prompts.Add("What are personal strengths of yours?");
@@ -40,8 +40,6 @@ namespace mindfulness
             }
             Console.WriteLine($"Number of Items entered: {_count}");
 
-
-
         }
         public string GetRandomPrompt()
         {
@@ -51,10 +49,5 @@ namespace mindfulness
             return _prompts[randomNum];
 
         }
-        public List<string> GetListFromUser()
-        {
-            return [];
-        }
-
     }
 }

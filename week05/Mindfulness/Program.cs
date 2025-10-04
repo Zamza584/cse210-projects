@@ -30,7 +30,7 @@ class Program
         {
             a2.DisplayStartMessage();
             a2.StartReflecting();
-            a1.DisplayEndMessage();
+            a2.DisplayEndMessage();
         }
         else if (option == 3)
         {
@@ -41,7 +41,7 @@ class Program
 
         else if (option == 4)
         {
-            a3.DisplayEndMessage();
+            Console.WriteLine("Hope you have a great time. See you soon!");
         }
 
     }

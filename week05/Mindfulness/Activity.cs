@@ -12,20 +12,12 @@ namespace mindfulness
         public Activity()
         {
         }
-        public Activity(string description, string name, int duration)
-        {
-            _name = name;
-            _description = description;
-            _duration = duration;
-        }
-
         public void DisplayStartMessage()
         {
             Console.WriteLine($"{_name}");
             Console.WriteLine($"{_description}");
             Console.Write($"How long in seconds will this session take?: ");
             _duration = int.Parse(Console.ReadLine());
-
         }
 
         public void DisplayEndMessage()

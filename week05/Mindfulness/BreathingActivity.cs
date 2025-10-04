@@ -6,7 +6,7 @@ namespace mindfulness
         public BreathingActivity()
         {
             _name = "Breathing Activity";
-            _description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing";
+            _description = "In this activity you will breath in and out for 5 seconds each.";
         }
 
         public void StartBreathing()
@@ -17,12 +17,14 @@ namespace mindfulness
 
             while (DateTime.Now < endTime)
             {
+    
                 Console.Write("Breathe in... ");
                 ShowCountDown(5);
-       
                 Console.WriteLine("");
                 Console.Write("Breathe out... ");
                 ShowCountDown(5);
+                Console.WriteLine("");
+
             }
 
         }
