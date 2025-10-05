@@ -10,7 +10,8 @@ namespace mindfulness
             _name = "Listing Activity";
             _description = "In this activity you will be given a question and you will be given some time to respond to this question.";
 
-            _prompts.Add("Who are people that you appreciate?");
+            //prompts added here are taken from university website https://byui-cse.github.io/cse210-ww-course/week05/develop.html 
+            _prompts.Add("Who are people that you appreciate?"); 
             _prompts.Add("What are personal strengths of yours?");
             _prompts.Add("Who are people that you have helped this week?");
             _prompts.Add("When have you felt the Holy Ghost this month?");

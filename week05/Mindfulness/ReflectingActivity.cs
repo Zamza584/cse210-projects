@@ -9,12 +9,12 @@ namespace mindfulness
             _name = "Reflecting Activity";
             _description = "In this activity you will reflect on a moment in your life. Then there will be some questions to ponder. ";
 
-
+            //prompts added here are taken from university website https://byui-cse.github.io/cse210-ww-course/week05/develop.html 
             _prompts.Add("Think of a time when you stood up for someone else.");
             _prompts.Add("Think of a time when you did something really difficult.");
             _prompts.Add("Think of a time when you helped someone in need.");
             _prompts.Add("Think of a time when you did something truly selfless.");
-
+            //questions added here are taken from university website https://byui-cse.github.io/cse210-ww-course/week05/develop.html 
             _questions.Add("Why was this experience meaningful to you?");
             _questions.Add("Have you ever done anything like this before?");
             _questions.Add("How did you get started?");
