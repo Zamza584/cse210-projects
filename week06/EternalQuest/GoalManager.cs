@@ -1,6 +1,6 @@
 public class GoalManager
 {
-    private List<Goal> _goals;
+    private List<Goal> _goals = new List<Goal>();
     private int _score = 0;
 
     public GoalManager() { }
@@ -15,19 +15,43 @@ public class GoalManager
         Console.WriteLine("  6. Quit");
         Console.Write("Select a choice from the menu: ");
         int choice = int.Parse(Console.ReadLine());
+
         if (choice == 1)
         {
             CreateGoal();
         }
-        if (choice == 2)
+        else if (choice == 2)
         {
             ListGoalDetails();
         }
+        else if (choice == 3)
+        {
+            SaveGoals();
+        }
+        else if (choice == 4)
+        {
+            LoadGoals();
+        }
+        else if (choice == 5)
+        {
+            RecordEvent();
+        }
+        else if (choice == 5)
+        {
+            RecordEvent();
+        }
+        else if (choice == 6)
+        {
+            return;
+        }
+        Start();
     }
     public void DisplayPlayerInfo()
     {
         Console.WriteLine("");
         Console.WriteLine($"Player current score: {_score}");
+        Console.WriteLine("");
+
     }
     public void ListGoalNames()
     {
@@ -35,6 +59,7 @@ public class GoalManager
         foreach (Goal goal in _goals)
         {
             Console.WriteLine($"{i}. {goal.GetShortName()}");
+            i++;
         }
     }
     public void ListGoalDetails()
@@ -43,8 +68,10 @@ public class GoalManager
         foreach (Goal goal in _goals)
         {
             Console.WriteLine($"{i}. {goal.GetDetailsString()}");
+            i++;
         }
         DisplayPlayerInfo();
+
     }
     public void CreateGoal()
     {
@@ -104,8 +131,8 @@ public class GoalManager
     }
     public void RecordEvent()
     {
-        Console.Write("Which goal have you accomplished? ");
         ListGoalNames();
+        Console.WriteLine("Which goal have you accomplished? ");
         int choice = int.Parse(Console.ReadLine());
         choice--;
 
@@ -115,15 +142,57 @@ public class GoalManager
             {
                 int points = _goals[i].RecordEvent();
                 _score += points;
+                Console.WriteLine($"Congratulations! You have earned {points} points!");
             }
         }
     }
     public void SaveGoals()
     {
+        Console.WriteLine("Enter a file name: ");
+        string filename = Console.ReadLine();
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            outputFile.WriteLine(_score);
+            foreach (Goal goal in _goals)
+            {
+                outputFile.WriteLine(goal.GetStringRespresentation());
+            }
+        }
 
     }
     public void LoadGoals()
     {
+        Console.Write("Enter a file name: ");
+        string filename = Console.ReadLine();
+        string[] lines = File.ReadAllLines(filename);
+        _goals.Clear();
+
+        _score = int.Parse(lines[0]);
+
+        foreach (string line in lines)
+        {
+            char[] d = { ':', ',' }; // had to use google ai response to help me understand delimiter
+            string[] entries = line.Split(d);
+            string[] goalType = line.Split(":");
+
+            if (goalType[0] == "SimpleGoal")
+            {
+                SimpleGoal sg = new SimpleGoal(entries[1], entries[2], int.Parse(entries[3]));
+                _goals.Add(sg);
+            }
+            else if (goalType[0] == "EternalGoal")
+            {
+                EternalGoal eg = new EternalGoal(entries[1], entries[2], int.Parse(entries[3]));
+                _goals.Add(eg);
+            }
+            if (goalType[0] == "ChecklistGoal")
+            {
+                ChecklistGoal cg = new ChecklistGoal(entries[1], entries[2], int.Parse(entries[3]), int.Parse(entries[5]), int.Parse(entries[4]));
+                cg.SetAmountCompleted(int.Parse(entries[6]));
+                _goals.Add(cg);
+            }
+
+        }
 
     }
 }

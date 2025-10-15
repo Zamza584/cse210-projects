@@ -1,3 +1,5 @@
+using System.Dynamic;
+
 public class ChecklistGoal : Goal
 {
     private int _amountCompleted;
@@ -16,6 +18,7 @@ public class ChecklistGoal : Goal
         {
             return _bonus;
         }
+        _amountCompleted++;
         return _points;
     }
     public override bool isComplete()
@@ -39,6 +42,12 @@ public class ChecklistGoal : Goal
     }
     public override string GetStringRespresentation()
     {
-        return $"Name: {_shortName} Description: {_description} Points: {_points}";
+        return $"ChecklistGoal:{_shortName},{_description},{_points},{_bonus},{_target},{_amountCompleted}";
+
+    }
+
+    public void SetAmountCompleted(int amountCompleted)
+    {
+        _amountCompleted = amountCompleted;
     }
 }

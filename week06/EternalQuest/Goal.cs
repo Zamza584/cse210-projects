@@ -1,3 +1,5 @@
+using System.Drawing;
+
 public class Goal
 {
     protected string _shortName;
@@ -32,7 +34,7 @@ public class Goal
     }
     public virtual string GetStringRespresentation()
     {
-        return "";
+        return $"{_shortName},{_description},{_points}";
     }
 
     public string GetShortName()
