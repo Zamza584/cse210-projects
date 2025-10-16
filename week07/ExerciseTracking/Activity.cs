@@ -9,9 +9,9 @@ public abstract class Activity
         _length = length;
     }
 
-    public abstract float CalculateDistance();
-    public abstract float CalculateSpeed();
-    public abstract float CalculatePace();
+    public abstract double CalculateDistance();
+    public abstract double CalculateSpeed();
+    public abstract double CalculatePace();
     public abstract string GetFullSummary();
 
 }

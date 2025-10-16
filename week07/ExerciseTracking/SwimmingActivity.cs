@@ -6,21 +6,21 @@ public class SwimmingActivity : Activity
         _laps = laps;
     }
 
-    public override float CalculateDistance()
+    public override double CalculateDistance()
     {
-        return _laps * 50 / 1000;
+        return (float)_laps * 50 / 1000 * 0.62;
     }
-    public override float CalculateSpeed()
+    public override double CalculateSpeed()
     {
-        return CalculateDistance() / _length * 60;
+        return (float)CalculateDistance() / (float)_length * 60;
     }
-    public override float CalculatePace()
+    public override double CalculatePace()
     {
-        return _length / CalculateDistance();
+        return (float)_length / (float)CalculateDistance();
     }
     public override string GetFullSummary()
     {
-        return $"{_date} Swimming ({_length})- Distance{CalculateDistance()} miles, Speed {CalculateSpeed()}, Pace {CalculatePace()} min per mile";
+        return $"{_date} Swimming ({_length} min) - Distance {CalculateDistance().ToString("F2")} miles, Speed {Math.Round(CalculateSpeed(), 2)} mph, Pace {CalculatePace().ToString("F2")} min per mile";
     }
 
 }

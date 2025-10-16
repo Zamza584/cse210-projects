@@ -7,21 +7,21 @@ public class BicycleActivity : Activity
         _speed = speed;
     }
 
-    public override float CalculateDistance()
+    public override double CalculateDistance()
     {
-        return _speed * _length;
+        return (float)_speed * _length;
     }
-    public override float CalculateSpeed()
+    public override double CalculateSpeed()
     {
-        return CalculateDistance() / _length;
+        return (float)CalculateDistance() / _length * 60;
     }
-    public override float CalculatePace()
+    public override double CalculatePace()
     {
-        return CalculateDistance() / (_length / 60);
+        return (float)CalculateDistance() / (_length / 60);
     }
     public override string GetFullSummary()
     {
-        return "";
+        return $"{_date} Bicycle ({_length} min) - Distance {CalculateDistance().ToString("F2")} miles, Speed {Math.Round(CalculateSpeed(), 2)} mph, Pace {CalculatePace().ToString("F2")} min per mile";
     }
 
 }
